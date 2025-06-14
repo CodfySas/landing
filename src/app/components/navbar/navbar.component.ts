@@ -100,7 +100,7 @@ export class NavbarComponent {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
         const navEndEvent = event as NavigationEnd;
-        this.isHome = navEndEvent.urlAfterRedirects !== '/terminos';
+        this.isHome = (navEndEvent.urlAfterRedirects === '/' || navEndEvent.urlAfterRedirects === '/#inicio')
 
         // Espera un poquito para que el scroll realmente esté en 0
         setTimeout(() => this.checkScroll(), 10);

@@ -17,9 +17,9 @@ import { CommonModule } from "@angular/common"
           <div class="footer-links">
             <div class="link-column">
               <h3>Productos</h3>
-              <a href="https://notamaestro.com" target="_blank">NotaMaestro</a>
-              <a href="https://ampirux.com" target="_blank">Ampirux</a>
-              <a href="https://toolveris.com" target="_blank">Toolveris</a>
+              <a href="notamaestro">NotaMaestro</a>
+              <a href="ampirux">Ampirux</a>
+              <a href="#contacto">Toolveris</a>
             </div>
             
             <div class="link-column">

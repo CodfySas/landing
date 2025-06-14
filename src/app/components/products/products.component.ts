@@ -6,6 +6,7 @@ interface Product {
   description: string
   icon: string
   features: string[]
+  link: string
 }
 
 @Component({
@@ -33,7 +34,7 @@ interface Product {
                 <i class="fas fa-check"></i> {{ feature }}
               </li>
             </ul>
-            <button class="product-button">Conocer más</button>
+            <a href="{{product.link}}" class="product-button">Conocer más</a>
           </div>
         </div>
       </div>
@@ -155,18 +156,21 @@ export class ProductsComponent {
         "Comunicación con padres",
         "Reportes académicos",
       ],
+      link: 'notamaestro'
     },
     {
       name: "Ampirux",
       description: "Sistema integral para barberías que gestiona citas, inventario y ventas.",
       icon: "fas fa-cut",
       features: ["Agenda de citas", "Control de inventario", "Gestión de ventas", "Fidelización de clientes"],
+      link: 'ampirux'
     },
     {
       name: "Toolveris",
       description: "Software especializado para ferreterías que optimiza la gestión del negocio.",
       icon: "fas fa-tools",
       features: ["Inventario detallado", "Punto de venta", "Gestión de proveedores", "Reportes de ventas"],
+      link: '#contacto'
     },
   ]
 }
