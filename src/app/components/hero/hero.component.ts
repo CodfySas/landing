@@ -8,7 +8,7 @@ import { CommonModule } from "@angular/common";
   template: `
     <section id="inicio" class="hero">
       <video preload="auto" autoplay muted loop playsinline class="background-video">
-        <source src="assets/video.mp4" type="video/mp4" />
+        <source src="https://cdn.pixabay.com/video/2023/08/22/177225-857004298_large.mp4" type="video/mp4" />
       </video>
       <div class="overlay"></div>
       <div class="container">
