@@ -57,7 +57,7 @@ import { CommonModule } from '@angular/common';
     .section-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #1DA382;
+      color: #7b2cbf;
       margin-bottom: 1rem;
       line-height: 1.2;
     }
@@ -94,7 +94,7 @@ import { CommonModule } from '@angular/common';
     .feature-icon {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #1DA382, #0F8A6B);
+      background: linear-gradient(135deg, #7b2cbf, #691bad);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -106,7 +106,7 @@ import { CommonModule } from '@angular/common';
     .feature-title {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #1DA382;
+      color: #7b2cbf;
       margin-bottom: 1rem;
       line-height: 1.2;
     }

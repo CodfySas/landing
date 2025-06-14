@@ -84,7 +84,7 @@ import { CommonModule } from '@angular/common';
 
     .hero-section {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #1DA382 0%, #0F8A6B 100%);
+      background: linear-gradient(135deg, #7b2cbf 0%, #691bad 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -157,7 +157,7 @@ import { CommonModule } from '@angular/common';
 
     .btn-primary {
       background: #FFD700;
-      color: #1DA382;
+      color: #7b2cbf;
       box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
     }
 
@@ -174,7 +174,7 @@ import { CommonModule } from '@angular/common';
 
     .btn-secondary:hover {
       background: white;
-      color: #1DA382;
+      color: #7b2cbf;
       transform: translateY(-2px);
     }
 
@@ -225,7 +225,7 @@ import { CommonModule } from '@angular/common';
     .dashboard-title {
       font-size: 1.25rem;
       font-weight: 700;
-      color: #1DA382;
+      color: #7b2cbf;
     }
 
     .dashboard-date {
@@ -253,7 +253,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .metric-card.sales {
-      background: linear-gradient(135deg, #1DA382, #0F8A6B);
+      background: linear-gradient(135deg, #7b2cbf, #691bad);
       color: white;
     }
 

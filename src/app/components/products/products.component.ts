@@ -6,7 +6,8 @@ interface Product {
   description: string
   icon: string
   features: string[]
-  link: string
+  link: string,
+  color: string,
 }
 
 @Component({
@@ -23,7 +24,7 @@ interface Product {
         </p>
         
         <div class="product-cards">
-          <div class="product-card" *ngFor="let product of products">
+          <div class="product-card" *ngFor="let product of products" style="border: solid;" [ngStyle]="{ 'border-color': product.color }">
             <div class="product-icon">
               <i [class]="product.icon"></i>
             </div>
@@ -156,21 +157,24 @@ export class ProductsComponent {
         "Comunicación con padres",
         "Reportes académicos",
       ],
-      link: 'notamaestro'
+      link: 'notamaestro',
+      color: '#e78617'
     },
     {
       name: "Ampirux",
       description: "Sistema integral para barberías que gestiona citas, inventario y ventas.",
       icon: "fas fa-cut",
       features: ["Agenda de citas", "Control de inventario", "Gestión de ventas", "Fidelización de clientes"],
-      link: 'ampirux'
+      link: 'ampirux',
+      color: '#7b2cbf'
     },
     {
       name: "Toolveris",
       description: "Software especializado para ferreterías que optimiza la gestión del negocio.",
       icon: "fas fa-tools",
       features: ["Inventario detallado", "Punto de venta", "Gestión de proveedores", "Reportes de ventas"],
-      link: '#contacto'
+      link: '#contacto',
+      color: '#ffffff'
     },
   ]
 }

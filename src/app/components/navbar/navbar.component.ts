@@ -20,9 +20,6 @@ import { filter } from "rxjs/operators";
           <a href="#desarrollo">Desarrollo a Medida</a>
           <a href="#contacto">Contáctanos</a>
         </div>
-        <div class="menu-toggle">
-          <i class="fas fa-bars"></i>
-        </div>
       </div>
     </nav>
   `,

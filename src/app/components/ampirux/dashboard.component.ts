@@ -132,7 +132,7 @@ import { CommonModule } from '@angular/common';
     .dashboard-section {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       padding: 5rem 0;
-      background: linear-gradient(135deg, #1DA382 0%, #0F8A6B 100%);
+      background: linear-gradient(135deg, #7b2cbf 0%,#691bad 100%);
       color: white;
       line-height: 1.6;
     }
@@ -254,7 +254,7 @@ import { CommonModule } from '@angular/common';
 
     .dashboard-header h3 {
       margin: 0;
-      color: #1DA382;
+      color: #7b2cbf;
       font-size: 1.5rem;
       line-height: 1.2;
     }
@@ -287,7 +287,7 @@ import { CommonModule } from '@angular/common';
       color: white;
     }
 
-    .metric-icon.sales { background: #1DA382; }
+    .metric-icon.sales { background: #7b2cbf; }
     .metric-icon.expenses { background: #FF6B6B; }
     .metric-icon.clients { background: #4ECDC4; }
 
@@ -312,12 +312,12 @@ import { CommonModule } from '@angular/common';
       font-weight: 600;
     }
 
-    .metric-change.positive { color: #1DA382; }
+    .metric-change.positive { color: #7b2cbf; }
     .metric-change.negative { color: #FF6B6B; }
 
     .chart-section h4 {
       margin: 0 0 1rem 0;
-      color: #1DA382;
+      color: #7b2cbf;
       font-size: 1.2rem;
       line-height: 1.2;
     }
@@ -345,7 +345,7 @@ import { CommonModule } from '@angular/common';
 
     .service-progress {
       height: 100%;
-      background: linear-gradient(90deg, #1DA382, #0F8A6B);
+      background: linear-gradient(90deg, #7b2cbf, #e48e5c);
       border-radius: 4px;
       transition: width 0.3s ease;
     }
@@ -353,7 +353,7 @@ import { CommonModule } from '@angular/common';
     .service-count {
       font-size: 0.9rem;
       font-weight: 600;
-      color: #1DA382;
+      color: #7b2cbf;
       min-width: 30px;
       text-align: right;
     }

@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
           </p>
           
           <div class="cta-buttons">
-            <a href="/#contacto" target="_blank" class="btn btn-primary">
+            <a href="/#contacto" class="btn btn-primary">
               Solicitar Demo
             </a>
           </div>
@@ -71,7 +71,7 @@ import { CommonModule } from '@angular/common';
     .cta-section {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       padding: 5rem 0;
-      background: linear-gradient(135deg, #1DA382 0%, #0F8A6B 100%);
+      background: linear-gradient(135deg, #7b2cbf 0%, #691bad 100%);
       color: white;
       position: relative;
       overflow: hidden;
@@ -147,7 +147,7 @@ import { CommonModule } from '@angular/common';
 
     .btn-primary {
       background: #FFD700;
-      color: #1DA382;
+      color: #7b2cbf;
       box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
     }
 
@@ -164,7 +164,7 @@ import { CommonModule } from '@angular/common';
 
     .btn-secondary:hover {
       background: white;
-      color: #1DA382;
+      color: #7b2cbf;
       transform: translateY(-2px);
     }
 
@@ -208,7 +208,7 @@ import { CommonModule } from '@angular/common';
     .success-card h3 {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #1DA382;
+      color: #7b2cbf;
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
@@ -231,7 +231,7 @@ import { CommonModule } from '@angular/common';
     .stat-value {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #1DA382;
+      color: #7b2cbf;
     }
 
     .stat-label {

@@ -144,7 +144,7 @@ import { CommonModule } from '@angular/common';
     .section-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #1DA382;
+      color: #7b2cbf;
       margin-bottom: 1rem;
       line-height: 1.2;
     }
@@ -221,7 +221,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .nav-bar {
-      background: #1DA382;
+      background: #7b2cbf;
       color: white;
       padding: 0.5rem 1rem;
       display: flex;
@@ -290,12 +290,12 @@ import { CommonModule } from '@angular/common';
     .widget-value {
       font-size: 0.8rem;
       font-weight: 700;
-      color: #1DA382;
+      color: #7b2cbf;
     }
 
     .device-label {
       font-weight: 600;
-      color: #1DA382;
+      color: #7b2cbf;
       font-size: 1.1rem;
     }
 
@@ -322,7 +322,7 @@ import { CommonModule } from '@angular/common';
     .feature-item h4 {
       font-size: 1.2rem;
       font-weight: 600;
-      color: #1DA382;
+      color: #7b2cbf;
       margin-bottom: 0.5rem;
       line-height: 1.2;
     }
