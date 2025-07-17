@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -7,9 +7,7 @@ import { CommonModule } from "@angular/common";
   imports: [CommonModule],
   template: `
     <section id="inicio" class="hero">
-      <video preload="auto" autoplay muted loop playsinline class="background-video">
-        <source src="https://cdn.pixabay.com/video/2023/08/22/177225-857004298_large.mp4" type="video/mp4" />
-      </video>
+      <img class="background-video" src="/assets/background.gif">
       <div class="overlay"></div>
       <div class="container">
         <div class="hero-content">
@@ -120,4 +118,70 @@ import { CommonModule } from "@angular/common";
     `,
   ],
 })
-export class HeroComponent { }
+export class HeroComponent {
+  @ViewChild('backgroundVideo', { static: false }) videoElement!: ElementRef<HTMLVideoElement>;
+
+  ngAfterViewInit(): void {
+    this.ensureVideoPlays();
+  }
+
+  private ensureVideoPlays(): void {
+    if (this.videoElement && this.videoElement.nativeElement) {
+      const video = this.videoElement.nativeElement;
+      
+      // Configurar propiedades del video
+      video.muted = true;
+      video.autoplay = true;
+      video.loop = true;
+      video.playsInline = true;
+      
+      // Intentar reproducir el video
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('Video playing successfully');
+          })
+          .catch((error) => {
+            console.warn('Error playing video:', error);
+            
+            // Fallback: intentar reproducir después de la primera interacción del usuario
+            this.setupUserInteractionFallback(video);
+          });
+      }
+      
+      // Manejar eventos del video
+      video.addEventListener('loadeddata', () => {
+        console.log('Video data loaded');
+        if (video.paused) {
+          video.play().catch(console.warn);
+        }
+      });
+      
+      video.addEventListener('canplay', () => {
+        console.log('Video can start playing');
+        if (video.paused) {
+          video.play().catch(console.warn);
+        }
+      });
+    }
+  }
+
+  private setupUserInteractionFallback(video: HTMLVideoElement): void {
+    const playOnInteraction = () => {
+      video.play().then(() => {
+        console.log('Video started playing after user interaction');
+        // Remover los event listeners después de que funcione
+        document.removeEventListener('click', playOnInteraction);
+        document.removeEventListener('touchstart', playOnInteraction);
+        document.removeEventListener('keydown', playOnInteraction);
+      }).catch(console.warn);
+    };
+
+    // Agregar listeners para diferentes tipos de interacción
+    document.addEventListener('click', playOnInteraction, { once: true });
+    document.addEventListener('touchstart', playOnInteraction, { once: true });
+    document.addEventListener('keydown', playOnInteraction, { once: true });
+  }
+}
