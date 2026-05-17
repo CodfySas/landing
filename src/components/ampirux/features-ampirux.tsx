@@ -5,19 +5,23 @@ import {
   BarChart,
   CalendarCheck,
   FileSpreadsheet,
+  Mic,
   Package,
   Scissors,
   ShoppingCart,
+  Wallet,
   type LucideIcon,
 } from "lucide-react";
 import { ampirux } from "@/lib/content";
 import { Reveal, staggerContainer, staggerItem } from "@/components/shared/motion-section";
 
 const iconMap: Record<string, LucideIcon> = {
+  Mic,
   CalendarCheck,
   Scissors,
   ShoppingCart,
   Package,
+  Wallet,
   BarChart,
   FileSpreadsheet,
 };

@@ -51,6 +51,38 @@ export const home = {
       "Soluciones SaaS especializadas para diferentes industrias, diseñadas para optimizar procesos y aumentar la productividad.",
     items: [
       {
+        slug: "vigxa",
+        brand: "vigxa" as const,
+        name: "Vigxa",
+        tagline: "Gestión 360° para constructoras",
+        description:
+          "Plataforma end-to-end para constructoras colombianas: proyectos, presupuestos, actas, SST, nómina, facturación electrónica DIAN y portal de interventoría — todo en un solo lugar.",
+        features: [
+          "Presupuestos con APU y AIU",
+          "Actas parciales y bitácora",
+          "SG-SST y portal externo",
+          "Facturación electrónica DIAN",
+        ],
+        cta: "Conocer más",
+        href: "/vigxa",
+      },
+      {
+        slug: "ampirux",
+        brand: "ampirux" as const,
+        name: "Ampirux",
+        tagline: "IA por voz para barberías",
+        description:
+          "Sistema integral para barberías que gestiona citas, ventas, inventario y nómina — con asistente de IA por voz que registra todo en segundos.",
+        features: [
+          "Asistente IA por voz",
+          "Agenda y reservas online",
+          "Facturación y nómina",
+          "Métricas en tiempo real",
+        ],
+        cta: "Conocer más",
+        href: "/ampirux",
+      },
+      {
         slug: "notamaestro",
         brand: "notamaestro" as const,
         name: "NotaMaestro",
@@ -65,38 +97,6 @@ export const home = {
         ],
         cta: "Conocer más",
         href: "/notamaestro",
-      },
-      {
-        slug: "ampirux",
-        brand: "ampirux" as const,
-        name: "Ampirux",
-        tagline: "Operación integral para barberías",
-        description:
-          "Sistema integral para barberías que gestiona citas, inventario, ventas y métricas desde una sola plataforma.",
-        features: [
-          "Agenda de citas",
-          "Control de inventario",
-          "Gestión de ventas",
-          "Fidelización de clientes",
-        ],
-        cta: "Conocer más",
-        href: "/ampirux",
-      },
-      {
-        slug: "toolveris",
-        brand: "codfy" as const,
-        name: "Toolveris",
-        tagline: "Punto de venta para ferreterías",
-        description:
-          "Software especializado para ferreterías que optimiza la gestión del negocio, inventario y ventas.",
-        features: [
-          "Inventario detallado",
-          "Punto de venta",
-          "Gestión de proveedores",
-          "Reportes de ventas",
-        ],
-        cta: "Próximamente",
-        href: "#contacto",
       },
     ],
   },
@@ -139,9 +139,9 @@ export const home = {
     description:
       "Estamos listos para ayudarte a transformar tu negocio con nuestras soluciones tecnológicas. Cuéntanos tu necesidad y te respondemos en menos de 24 horas.",
     subjects: [
-      { value: "notamaestro", label: "NotaMaestro" },
+      { value: "vigxa", label: "Vigxa" },
       { value: "ampirux", label: "Ampirux" },
-      { value: "toolveris", label: "Toolveris" },
+      { value: "notamaestro", label: "NotaMaestro" },
       { value: "desarrollo", label: "Desarrollo a medida" },
       { value: "otro", label: "Otro" },
     ],
@@ -279,16 +279,17 @@ export const notamaestro = {
 
 export const ampirux = {
   hero: {
-    eyebrow: "Para barberías modernas",
-    title: "El Software Definitivo para tu",
+    eyebrow: "Barbería + IA por voz",
+    title: "El software con IA para tu",
     titleHighlight: "Barbería",
     subtitle:
-      "Gestiona citas, inventario, ventas y métricas de tu barbería desde una sola plataforma. Optimiza tu negocio y aumenta tus ganancias con nuestra solución integral.",
-    primaryCta: { label: "Iniciar Ahora", external: true },
+      "Dictá una venta, una cita o un gasto — Ampirux lo registra en segundos. Agenda, facturación, nómina y métricas en una sola plataforma, con asistente de voz exclusivo de la industria.",
+    primaryCta: { label: "Probar 6 días gratis", external: true },
     secondaryCta: { label: "Ver Demo", external: true },
+    trialNote: "Trial Pro completo — sin tarjeta de crédito.",
     stats: [
       { value: "20+", label: "Barberías Activas" },
-      { value: "95%", label: "Satisfacción" },
+      { value: "300", label: "Usos IA / mes en Starter" },
       { value: "24/7", label: "Soporte" },
     ],
     dashboardMock: {
@@ -301,14 +302,14 @@ export const ampirux = {
   features: {
     title: "¿Por qué elegir Ampirux?",
     description:
-      "Una suite completa diseñada por barberos, para barberos. Todo lo que necesitas en un solo lugar.",
+      "Una suite completa diseñada por barberos, para barberos. Operación, IA y reportes en un solo lugar.",
     items: [
-      { icon: "CalendarCheck", title: "Agendamiento de Citas", description: "Sistema intuitivo para gestionar citas, recordatorios automáticos y calendario interactivo para optimizar tu agenda diaria." },
-      { icon: "Scissors", title: "Gestión de Servicios", description: "Cataloga todos los servicios de tu barbería con precios, duración y descripción detallada para una mejor organización." },
-      { icon: "ShoppingCart", title: "Productos en Venta", description: "Administra tu catálogo de productos, controla stock y realiza ventas directamente desde la plataforma." },
-      { icon: "Package", title: "Control de Inventario", description: "Mantén un registro preciso de tu inventario con alertas de stock bajo y control de proveedores." },
-      { icon: "BarChart", title: "Reportes y Métricas", description: "Visualiza el rendimiento de tu negocio con gráficos detallados y métricas de ventas, gastos y ganancias." },
-      { icon: "FileSpreadsheet", title: "Exportación Excel/PDF", description: "Exporta todos tus reportes y datos a Excel o PDF para análisis externos y respaldos importantes." },
+      { icon: "Mic", title: "Asistente IA por voz", description: "Dictá \"corte clásico para Carlos a las 4\" y Ampirux crea la cita. También registra ventas, gastos y servicios desde voz o texto. Exclusivo del sector." },
+      { icon: "CalendarCheck", title: "Agenda y reservas online", description: "Calendario interactivo, recordatorios automáticos por WhatsApp y un link público para que tus clientes reserven sin escribirte." },
+      { icon: "Scissors", title: "Servicios e historia clínica", description: "Cataloga servicios con duración y precio. En Pro: historia clínica del cliente con fotos y procedimientos." },
+      { icon: "ShoppingCart", title: "Productos, ventas y caja", description: "Catálogo de productos, ventas mixtas (servicio + producto), control de inventario y cierre de caja al final del día." },
+      { icon: "Wallet", title: "Nómina, comisiones y préstamos", description: "Liquidación de nómina, cálculo automático de comisiones por barbero, préstamos a empleados y certificados laborales." },
+      { icon: "BarChart", title: "Reportes y Google Calendar", description: "Métricas de ventas, gastos y servicios top. En Pro: sincronización con Google Calendar y exportación a Excel." },
     ],
   },
   dashboard: {
@@ -324,81 +325,59 @@ export const ampirux = {
   },
   pricing: {
     eyebrow: "Planes y precios",
-    title: "Un plan para cada tamaño de barbería",
+    title: "El plan correcto para cada barbería",
     description:
-      "Empieza con lo que necesitas y escala cuando crezcas. Todos los planes incluyen soporte 24/7.",
+      "Empieza con 6 días Pro gratis. Sin tarjeta de crédito, sin permanencia.",
     plans: [
       {
         name: "Básico",
         price: "49.900",
         period: "/mes",
-        description: "Para barberías que están empezando.",
+        description: "Lo esencial para arrancar.",
         features: [
-          "50 facturas por día",
-          "Sin facturación electrónica",
-          "Integración WhatsApp",
-          "Sin configuración de empleados",
-          "Agendamiento por WhatsApp",
+          "1 usuario",
+          "Agenda y reservas online",
+          "Clientes y servicios",
+          "Ventas y caja",
+          "Soporte por email",
         ],
         featured: false,
       },
       {
         name: "Starter",
-        price: "99.900",
+        price: "139.900",
         period: "/mes",
-        description: "Para barberías en crecimiento.",
+        description: "El más popular — IA por voz incluida.",
         features: [
-          "100 facturas por día",
-          "Sin facturación electrónica",
-          "Hasta 3 empleados",
-          "Cálculo de comisiones",
-          "Reportes básicos",
-        ],
-        featured: false,
-      },
-      {
-        name: "Plus",
-        price: "239.900",
-        period: "/mes",
-        description: "Para barberías establecidas.",
-        features: [
-          "Facturación electrónica",
-          "150 facturas por día",
-          "Hasta 10 empleados",
-          "Cálculo y liquidación de nómina",
-          "Reportes avanzados",
-        ],
-        featured: false,
-      },
-      {
-        name: "Pro",
-        price: "449.900",
-        period: "/mes",
-        description: "Para operaciones profesionales.",
-        features: [
-          "Facturación electrónica ilimitada",
-          "Sin límites de empleados",
-          "Gestión de usuarios y roles",
-          "Sistema de promociones inteligentes",
-          "Reportes ejecutivos",
+          "Hasta 5 usuarios",
+          "Todo lo del Básico",
+          "Productos e inventario",
+          "Nómina, asistencia y préstamos",
+          "Promociones y certificados",
+          "Asistente IA por voz · 300 usos/mes",
         ],
         featured: true,
       },
       {
-        name: "Enterprise",
-        price: "619.900",
+        name: "Pro",
+        price: "239.900",
         period: "/mes",
-        description: "Para cadenas y franquicias.",
+        description: "Operación profesional sin límites.",
         features: [
-          "Facturas ilimitadas",
-          "Facturación electrónica ilimitada",
-          "Múltiples sucursales",
-          "Catálogo digital para clientes",
-          "Bitácora del sistema",
+          "Usuarios ilimitados",
+          "Todo lo del Starter",
+          "Historia clínica con fotos",
+          "Sincronización Google Calendar",
+          "Exportación a Excel",
+          "Asistente IA por voz ilimitado",
         ],
         featured: false,
       },
     ],
+    trialBanner: {
+      label: "Prueba 6 días gratis",
+      text: "Trial Pro con acceso completo, sin tarjeta de crédito. Cancela cuando quieras.",
+    },
   },
   responsive: {
     eyebrow: "Multi-dispositivo",
@@ -429,6 +408,232 @@ export const ampirux = {
   },
 } as const;
 
+export const vigxa = {
+  hero: {
+    eyebrow: "Para constructoras colombianas",
+    title: "La plataforma 360° para tu",
+    titleHighlight: "constructora",
+    subtitle:
+      "Proyectos, presupuestos, actas, SG-SST, nómina y facturación electrónica DIAN. Una sola plataforma desde la cotización hasta el cierre y la garantía.",
+    primaryCta: { label: "Empezar prueba gratis", external: true },
+    secondaryCta: { label: "Ver Demo", external: true },
+    trialNote: "15 días con acceso PRO completo. Sin tarjeta de crédito.",
+    stats: [
+      { value: "157", label: "Funcionalidades" },
+      { value: "36", label: "Módulos integrados" },
+      { value: "15", label: "Días de prueba" },
+    ],
+  },
+  // Scrolly modules — each one is a step in the scroll. The 3D object lives on
+  // the opposite side of the text (right/left alternating).
+  scrolly: {
+    eyebrow: "Cómo funciona",
+    title: "Una obra. Una plataforma. Cero hojas de cálculo.",
+    description:
+      "Cada módulo conversa con el siguiente. Lo que cotizas se convierte en presupuesto, lo que ejecutas se factura, lo que firmas queda registrado.",
+    steps: [
+      {
+        id: "planning",
+        eyebrow: "01 · Planeación",
+        align: "right" as const, // text on right when 3D is on left
+        title: "Cotiza, presupuesta y arranca con APU",
+        description:
+          "Construye cotizaciones con tus servicios y plantillas, conviértelas en presupuesto con capítulos, actividades y Análisis de Precios Unitarios (APU). Configura AIU, importa desde Excel y genera el cronograma automático.",
+        bullets: [
+          "Cotizaciones con plantillas reutilizables",
+          "Presupuesto jerárquico capítulos → APU",
+          "AIU configurable por proyecto",
+          "Cronograma generado del presupuesto",
+        ],
+      },
+      {
+        id: "execution",
+        eyebrow: "02 · Ejecución",
+        align: "left" as const, // text on left when 3D is on right
+        title: "Avanza la obra desde un solo tablero",
+        description:
+          "Bitácora diaria con clima integrado, fotos georreferenciadas, RFIs, change orders, punch list y submittals. Tu equipo en obra registra, tu equipo en oficina aprueba.",
+        bullets: [
+          "Bitácora con clima y fotos",
+          "Change Orders y RFIs trazables",
+          "Punch List y Submittals",
+          "Permisos de trabajo y SG-SST",
+        ],
+      },
+      {
+        id: "finance",
+        eyebrow: "03 · Finanzas y DIAN",
+        align: "right" as const,
+        title: "Actas, facturación electrónica y cartera",
+        description:
+          "Actas parciales firmables, facturación electrónica DIAN (resoluciones, notas crédito, PDF y XML), retenciones, pólizas, anticipos amortizables y flujo de caja por proyecto.",
+        bullets: [
+          "Facturación electrónica DIAN integrada",
+          "Actas parciales y notas crédito",
+          "Pólizas y anticipos amortizables",
+          "Flujo de caja por obra",
+        ],
+      },
+      {
+        id: "people",
+        eyebrow: "04 · Nómina y SG-SST",
+        align: "left" as const,
+        title: "Empleados, SST y compliance",
+        description:
+          "Nómina individual o masiva con liquidación, parafiscales y firma digital. SG-SST completo: inspecciones, incidentes, EPP, charlas, capacitaciones y permisos en altura.",
+        bullets: [
+          "Nómina masiva con liquidación",
+          "Inspecciones e incidentes SG-SST",
+          "Capacitaciones y charlas toolbox",
+          "Permisos en altura y EPP",
+        ],
+      },
+      {
+        id: "portal",
+        eyebrow: "05 · Portal externo",
+        align: "right" as const,
+        title: "Interventoría, clientes y proveedores en línea",
+        description:
+          "Comparte un portal moderno con interventores, clientes y proveedores: dashboard de obra, actas, bitácora, documentos, fotos, materiales, RFIs y mensajería — sin sumarlos a tu plan.",
+        bullets: [
+          "Portal V2 para interventoría y clientes",
+          "Portal de proveedores y licitaciones",
+          "Mensajería y aprobaciones",
+          "Habeas Data Ley 1581 de 2012",
+        ],
+      },
+      {
+        id: "boardroom",
+        eyebrow: "06 · Boardroom",
+        align: "left" as const,
+        title: "Vista ejecutiva del portafolio completo",
+        description:
+          "KPIs de hasta 500 proyectos en una pantalla: presupuesto vs. ejecutado, ingresos, gastos, top-by-exposure, alertas de sobre-presupuesto y EVM. Una sola vista para el comité directivo.",
+        bullets: [
+          "Hasta 500 proyectos en vista única",
+          "Earned Value Management (EVM)",
+          "Alertas de sobre-presupuesto",
+          "Integraciones Siigo, Alegra, World Office",
+        ],
+      },
+    ],
+  },
+  features: {
+    eyebrow: "Todo en un solo lugar",
+    title: "36 módulos integrados, listos para tu obra",
+    description:
+      "Diseñado con constructoras colombianas. Cada feature pensada para reemplazar Excel + WhatsApp + 4 sistemas separados.",
+    items: [
+      { icon: "LayoutDashboard", title: "Tablero de proyecto", description: "Kanban de actividades, cronograma Gantt y dashboard EVM por obra." },
+      { icon: "FileSpreadsheet", title: "Presupuesto y APU", description: "Capítulos, actividades, Análisis de Precios Unitarios e import/export Excel." },
+      { icon: "FileCheck2", title: "Actas parciales", description: "Generación, firma y conversión directa a factura electrónica." },
+      { icon: "Receipt", title: "Facturación DIAN", description: "Resoluciones, notas crédito, PDF/XML — integración con Yabi y Siigo." },
+      { icon: "HardHat", title: "SG-SST completo", description: "Inspecciones, incidentes, EPP, charlas, capacitaciones y permisos en altura." },
+      { icon: "Users", title: "Nómina y RRHH", description: "Liquidación masiva, parafiscales, certificados y firma digital." },
+      { icon: "Wrench", title: "Compras y materiales", description: "Órdenes de compra, recepción, inventario y aprobaciones (submittals)." },
+      { icon: "ShieldCheck", title: "Pólizas y anticipos", description: "Pólizas con alertas de vencimiento, anticipos amortizables y retenciones." },
+      { icon: "MessageSquareText", title: "RFIs y comunicación", description: "RFIs, change orders, mensajería interna y notificaciones en tiempo real." },
+      { icon: "ClipboardCheck", title: "Punch list y cierre", description: "Pendientes con responsable, fecha y foto. Cierre de obra con garantías." },
+      { icon: "Globe2", title: "Portal externo V2", description: "Cliente, interventoría, proveedores. 16+ pantallas read-write fuera de tu plan." },
+      { icon: "TrendingUp", title: "Boardroom ejecutivo", description: "Portfolio de hasta 500 proyectos con KPIs y alertas para el comité directivo." },
+    ],
+  },
+  compliance: {
+    eyebrow: "Hecho para Colombia",
+    title: "Cumple con la regulación que importa",
+    description:
+      "Vigxa entiende cómo se construye y se factura en Colombia. La parte legal y fiscal viene de fábrica.",
+    items: [
+      { icon: "FileBadge2", title: "Facturación electrónica DIAN", description: "Resoluciones, ambiente de pruebas y producción, notas crédito, PDF + XML firmados." },
+      { icon: "ShieldCheck", title: "SG-SST conforme a Resolución 0312", description: "Inspecciones, incidentes, capacitaciones, EPP y reportes listos para auditoría." },
+      { icon: "Building2", title: "Nómina con parafiscales", description: "Liquidación, salud, pensión, ARL, cesantías, primas y certificados laborales." },
+      { icon: "Lock", title: "Habeas Data Ley 1581 de 2012", description: "Consentimientos, exportación de datos personales y solicitudes de eliminación." },
+      { icon: "Plug", title: "Integraciones contables", description: "Siigo, Alegra y World Office para conciliación automática con tu contador." },
+      { icon: "CreditCard", title: "Pagos Wompi en COP", description: "Cobro con PSE, tarjeta, Bancolombia y Nequi — proporcional al upgrade." },
+    ],
+  },
+  pricing: {
+    eyebrow: "Planes y precios",
+    title: "Crece desde una obra hasta un portafolio",
+    description:
+      "Empieza con 15 días Pro gratis. Sin tarjeta, sin compromiso de permanencia. Cambia de plan cuando crezcas — solo pagas la diferencia proporcional.",
+    plans: [
+      {
+        name: "Starter",
+        price: "149.000",
+        period: "/mes",
+        description: "Para constructoras pequeñas y contratistas (1–3 obras).",
+        limits: "3 usuarios · 15 empleados · 5 proyectos activos",
+        features: [
+          "Hasta 5 proyectos activos",
+          "Hasta 30 cotizaciones/mes",
+          "Nómina individual",
+          "SG-SST básico (inspecciones e incidentes)",
+          "Bitácora de obra digital",
+          "Plantilla PDF clásica",
+          "Soporte por email",
+        ],
+        featured: false,
+      },
+      {
+        name: "Business",
+        price: "399.000",
+        period: "/mes",
+        description: "Para constructoras medianas con interventoría y SST.",
+        limits: "10 usuarios · empleados y proyectos ilimitados",
+        features: [
+          "Todo lo del Starter",
+          "Cotizaciones y proyectos ilimitados",
+          "Nómina masiva con liquidación",
+          "Todas las plantillas PDF + firma digital",
+          "Integración Gmail y envío de emails",
+          "Roles avanzados y exportación Excel",
+          "SG-SST completo + portal de interventoría",
+          "Control de horas y materiales",
+          "Submittals, garantías y closeout",
+          "Soporte prioritario",
+        ],
+        featured: true,
+      },
+      {
+        name: "Enterprise",
+        price: "1.200.000",
+        period: "/mes",
+        description: "Para grupos constructores y portafolios grandes.",
+        limits: "Usuarios ilimitados · Boardroom 500 proyectos",
+        features: [
+          "Todo lo del Business",
+          "Usuarios ilimitados",
+          "API REST y webhooks",
+          "Formularios personalizados",
+          "Automatización de flujos",
+          "Single Sign-On (SSO)",
+          "Onboarding personalizado",
+          "Soporte dedicado",
+        ],
+        featured: false,
+      },
+    ],
+    trialBanner: {
+      label: "Prueba 15 días gratis",
+      text: "Acceso Pro completo durante 15 días. Sin tarjeta de crédito.",
+    },
+  },
+  cta: {
+    eyebrow: "Empieza hoy",
+    title: "Construye tu próxima obra desde Vigxa",
+    description:
+      "Únete a las constructoras que cambiaron Excel + WhatsApp + 4 sistemas por una sola plataforma diseñada para Colombia.",
+    primary: { label: "Empezar prueba gratis", external: true },
+    secondary: { label: "Hablar con ventas", href: "/#contacto" },
+    bullets: [
+      "Migración asistida sin costo",
+      "15 días Pro sin tarjeta de crédito",
+      "Cancela cuando quieras — sin permanencia",
+    ],
+  },
+} as const;
+
 export const terms = {
   title: "Términos y Condiciones",
   lastUpdated: "12 de junio de 2025",
@@ -439,7 +644,7 @@ export const terms = {
       heading: "1. Definiciones",
       paragraphs: [
         "**Sitio Web:** Se refiere a codfysas.com y a cualquier subdominio operado por CODFY.",
-        "**Servicios:** Cualquier software, aplicación o servicio ofrecido por CODFY, incluyendo NotaMaestro, Ampirux y Toolveris.",
+        "**Servicios:** Cualquier software, aplicación o servicio ofrecido por CODFY, incluyendo Vigxa, Ampirux y NotaMaestro.",
         "**Usuario:** Toda persona natural o jurídica que accede o utiliza el Sitio Web o los Servicios.",
         "**Contenido:** Cualquier información, texto, gráfico, foto u otro material que pueda ser visto en el Sitio Web.",
         "**Cuenta:** El registro asociado a un Usuario que le permite acceder a funcionalidades específicas.",

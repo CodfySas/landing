@@ -13,13 +13,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${SITE.url}/notamaestro`,
+      url: `${SITE.url}/vigxa`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${SITE.url}/ampirux`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${SITE.url}/notamaestro`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,

@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import {
   ArrowUpRight,
+  Building2,
   Check,
   GraduationCap,
   Scissors,
@@ -23,6 +24,15 @@ import { cn } from "@/lib/utils";
 type Brand = keyof typeof brandStyles;
 
 const brandStyles = {
+  vigxa: {
+    icon: Building2,
+    accent: "from-vigxa to-vigxa-dark",
+    badge: "bg-vigxa/15 text-vigxa-light border-vigxa/30",
+    text: "text-vigxa-light",
+    bg: "bg-gradient-to-br from-[#1a1306]/80 via-[#120c02]/85 to-[#08050a]/90",
+    border: "border-vigxa/30",
+    accentBar: "bg-gradient-to-r from-vigxa via-vigxa-light to-vigxa/0",
+  },
   notamaestro: {
     icon: GraduationCap,
     accent: "from-notamaestro to-notamaestro-dark",
@@ -168,7 +178,7 @@ function ProductPanel({
 }) {
   const styles = brandStyles[item.brand as Brand];
   const Icon: LucideIcon = styles.icon;
-  const isComingSoon = item.cta === "Próximamente";
+  const isComingSoon = (item.cta as string) === "Próximamente";
 
   return (
     <div

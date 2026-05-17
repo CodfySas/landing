@@ -3,7 +3,7 @@ export const SITE = {
   legalName: "CODFY S.A.S.",
   tagline: "Trazabilidad e Innovación",
   description:
-    "Software para la transformación digital de empresas. Desarrollo a medida, soluciones SaaS para barberías y educación.",
+    "Software para la transformación digital. Desarrollo a medida y soluciones SaaS: Vigxa (constructoras), Ampirux (barberías) y NotaMaestro (educación).",
   url: "https://codfysas.com",
   ogImage: "/og-image.png",
 } as const;
@@ -28,6 +28,8 @@ export const EXTERNAL = {
   notamaestroDemo: "https://www.youtube.com/watch?v=9jVZbGGrVNM",
   ampirux: "https://ampirux.com",
   ampiruxDemo: "https://www.youtube.com/watch?v=9jVZbGGrVNM",
+  vigxa: "https://vigxa.com",
+  vigxaDemo: "https://www.youtube.com/watch?v=9jVZbGGrVNM",
 } as const;
 
 export const NAV_LINKS = [
@@ -40,9 +42,9 @@ export const NAV_LINKS = [
 
 export const FOOTER_LINKS = {
   products: [
-    { label: "NotaMaestro", href: "/notamaestro" },
+    { label: "Vigxa", href: "/vigxa" },
     { label: "Ampirux", href: "/ampirux" },
-    { label: "Toolveris", href: "/#productos" },
+    { label: "NotaMaestro", href: "/notamaestro" },
   ],
   company: [
     { label: "Nosotros", href: "/#nosotros" },

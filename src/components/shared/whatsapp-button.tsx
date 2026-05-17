@@ -16,10 +16,21 @@ export function WhatsAppButton() {
       transition={{ delay: 1, type: "spring", stiffness: 200, damping: 18 }}
       whileTap={{ scale: 0.95 }}
     >
+      {/* Outward "ping" halo. Starts invisible at scale=1 (matches the button)
+          and only becomes visible after it has grown past the button edge —
+          otherwise each loop restart flashed the green halo on top of the
+          button face. Opacity ends at 0 too, so the loop seam is seamless. */}
       <motion.span
-        className="absolute inset-0 rounded-full bg-[#25D366]"
-        animate={{ scale: [1, 1.4], opacity: [0.55, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-full bg-[#25D366]"
+        animate={{ scale: [1, 1.7], opacity: [0, 0.5, 0] }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeOut",
+          times: [0, 0.15, 1],
+        }}
+        style={{ transformOrigin: "50% 50%" }}
       />
       <svg
         className="relative h-7 w-7 fill-white md:h-8 md:w-8"
