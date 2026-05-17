@@ -42,17 +42,16 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function FeaturesNM() {
   return (
-    <section className="relative bg-white py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Main features */}
+    <section className="relative py-24 text-white md:py-32">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-notamaestro">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-notamaestro-light">
             Funcionalidades clave
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-codfy-ink text-balance sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-white text-balance sm:text-4xl md:text-5xl">
             Todo lo que tu institución necesita
           </h2>
-          <p className="mt-5 text-base text-balance text-neutral-600 md:text-lg">
+          <p className="mt-5 text-base text-balance text-white/65 md:text-lg">
             Una plataforma completa para la gestión escolar, diseñada con docentes y administradores.
           </p>
         </Reveal>
@@ -72,19 +71,17 @@ export function FeaturesNM() {
                 variants={staggerItem}
                 whileHover={{ y: -6 }}
                 transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                className="group relative overflow-hidden rounded-3xl border border-neutral-200 bg-gradient-to-br from-white to-[#fff7eb]/40 p-7 shadow-sm transition-all hover:border-notamaestro/30 hover:shadow-glow-notamaestro"
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-notamaestro/[0.04] p-7 backdrop-blur-md transition-all hover:border-notamaestro/40 hover:shadow-glow-notamaestro"
               >
                 <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-notamaestro to-notamaestro-dark text-white shadow-lg shadow-notamaestro/30 transition-transform duration-300 group-hover:rotate-6">
                   {Icon && <Icon className="h-7 w-7" />}
                 </div>
-                <h3 className="font-display text-xl font-bold text-codfy-ink">{feature.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                  {feature.description}
-                </p>
+                <h3 className="font-display text-xl font-bold text-white">{feature.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/65">{feature.description}</p>
                 <ul className="mt-5 space-y-1.5">
                   {feature.highlights.map((h) => (
-                    <li key={h} className="flex items-center gap-2 text-xs text-neutral-600">
-                      <span className="h-1.5 w-1.5 rounded-full bg-notamaestro" />
+                    <li key={h} className="flex items-center gap-2 text-xs text-white/70">
+                      <span className="h-1.5 w-1.5 rounded-full bg-notamaestro-light" />
                       {h}
                     </li>
                   ))}
@@ -94,16 +91,16 @@ export function FeaturesNM() {
           })}
         </motion.div>
 
-        {/* Subgrids: Teacher / Admin / Tech */}
+        {/* Subgrids */}
         <div className="mt-28 space-y-24">
           {[notamaestro.teacherFeatures, notamaestro.adminFeatures, notamaestro.techFeatures].map(
             (group, idx) => (
               <div key={group.title}>
                 <Reveal className="mx-auto max-w-2xl text-center">
-                  <h3 className="font-display text-2xl font-bold tracking-tight text-codfy-ink sm:text-3xl">
+                  <h3 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
                     {group.title}
                   </h3>
-                  <p className="mt-3 text-neutral-600">{group.description}</p>
+                  <p className="mt-3 text-white/65">{group.description}</p>
                 </Reveal>
                 <motion.div
                   variants={staggerContainer}
@@ -119,15 +116,15 @@ export function FeaturesNM() {
                         key={item.title}
                         variants={staggerItem}
                         whileHover={{ y: -4 }}
-                        className="rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:border-notamaestro/30 hover:shadow-md"
+                        className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition-all hover:border-notamaestro/40 hover:bg-white/[0.05]"
                       >
-                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-notamaestro/10 text-notamaestro-dark ring-1 ring-notamaestro/20">
+                        <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-notamaestro/15 text-notamaestro-light ring-1 ring-notamaestro/30">
                           {Icon && <Icon className="h-5 w-5" />}
                         </div>
-                        <h4 className="font-display text-base font-semibold text-codfy-ink">
+                        <h4 className="font-display text-base font-semibold text-white">
                           {item.title}
                         </h4>
-                        <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                        <p className="mt-2 text-sm leading-relaxed text-white/65">
                           {item.description}
                         </p>
                       </motion.div>
@@ -135,7 +132,7 @@ export function FeaturesNM() {
                   })}
                 </motion.div>
                 {idx < 2 && (
-                  <div className="mx-auto mt-24 h-px max-w-3xl bg-gradient-to-r from-transparent via-notamaestro/20 to-transparent" />
+                  <div className="mx-auto mt-24 h-px max-w-3xl bg-gradient-to-r from-transparent via-notamaestro/30 to-transparent" />
                 )}
               </div>
             )

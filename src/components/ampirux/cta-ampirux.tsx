@@ -9,23 +9,7 @@ import { Reveal } from "@/components/shared/motion-section";
 
 export function CtaAmpirux() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0d0322] py-24 md:py-32">
-      {/* Animated bg */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-ampirux via-ampirux-dark to-transparent opacity-50 blur-[120px]"
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-      </div>
+    <section className="relative py-24 md:py-32">
 
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center">

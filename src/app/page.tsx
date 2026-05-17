@@ -4,6 +4,7 @@ import { About } from "@/components/sections/about";
 import { Products } from "@/components/sections/products";
 import { CustomSoftware } from "@/components/sections/custom-software";
 import { Contact } from "@/components/sections/contact";
+import { HomePageScene } from "@/components/shared/home-page-scene";
 import { OrganizationJsonLd } from "@/components/shared/json-ld";
 
 export const metadata: Metadata = {
@@ -15,13 +16,16 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <>
+    <div className="relative bg-codfy-ink">
       <OrganizationJsonLd />
-      <HeroHome />
-      <About />
-      <Products />
-      <CustomSoftware />
-      <Contact />
-    </>
+      <HomePageScene />
+      <div className="relative z-10">
+        <HeroHome />
+        <About />
+        <Products />
+        <CustomSoftware />
+        <Contact />
+      </div>
+    </div>
   );
 }

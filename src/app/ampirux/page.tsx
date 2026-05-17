@@ -5,6 +5,7 @@ import { DashboardAmpirux } from "@/components/ampirux/dashboard-ampirux";
 import { PricingAmpirux } from "@/components/ampirux/pricing-ampirux";
 import { ResponsiveAmpirux } from "@/components/ampirux/responsive-ampirux";
 import { CtaAmpirux } from "@/components/ampirux/cta-ampirux";
+import { AmpiruxPageScene } from "@/components/shared/ampirux-page-scene";
 import { SoftwareJsonLd } from "@/components/shared/json-ld";
 import { EXTERNAL } from "@/lib/constants";
 
@@ -22,19 +23,22 @@ export const metadata: Metadata = {
 
 export default function AmpiruxPage() {
   return (
-    <>
+    <div className="relative bg-[#0d0322]">
       <SoftwareJsonLd
         name="Ampirux"
         description="Software integral para barberías: gestión de citas, inventario, ventas, métricas y facturación electrónica."
         url={EXTERNAL.ampirux}
         brand="Ampirux by CODFY"
       />
-      <HeroAmpirux />
-      <FeaturesAmpirux />
-      <DashboardAmpirux />
-      <PricingAmpirux />
-      <ResponsiveAmpirux />
-      <CtaAmpirux />
-    </>
+      <AmpiruxPageScene />
+      <div className="relative z-10">
+        <HeroAmpirux />
+        <FeaturesAmpirux />
+        <DashboardAmpirux />
+        <PricingAmpirux />
+        <ResponsiveAmpirux />
+        <CtaAmpirux />
+      </div>
+    </div>
   );
 }

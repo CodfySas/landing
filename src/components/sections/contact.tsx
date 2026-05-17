@@ -20,7 +20,12 @@ import {
 import { CONTACT, EXTERNAL, SOCIALS } from "@/lib/constants";
 import { home } from "@/lib/content";
 import { Reveal } from "@/components/shared/motion-section";
-import { FacebookIcon, InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/shared/brand-icons";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  TikTokIcon,
+  WhatsAppIcon,
+} from "@/components/shared/brand-icons";
 
 const schema = z.object({
   name: z.string().min(2, "Tu nombre es muy corto."),
@@ -74,18 +79,18 @@ export function Contact() {
   return (
     <section
       id="contacto"
-      className="relative isolate overflow-hidden bg-white py-24 md:py-32"
+      className="relative py-24 md:py-32"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-codfy/30 to-transparent" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-codfy">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-codfy-light">
             {home.contact.eyebrow}
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-codfy-ink text-balance sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-white text-balance sm:text-4xl md:text-5xl">
             {home.contact.title}
           </h2>
-          <p className="mt-5 text-base text-balance text-neutral-600 md:text-lg">
+          <p className="mt-5 text-base text-balance text-white/65 md:text-lg">
             {home.contact.description}
           </p>
         </Reveal>
@@ -93,7 +98,7 @@ export function Contact() {
         <div className="mx-auto mt-16 grid max-w-6xl gap-8 lg:grid-cols-5">
           {/* Contact Info */}
           <Reveal as="div" className="lg:col-span-2">
-            <div className="relative h-full overflow-hidden rounded-3xl bg-codfy-ink p-8 text-white shadow-xl">
+            <div className="relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-white shadow-xl backdrop-blur-xl">
               <div className="absolute inset-0 gradient-mesh-codfy opacity-50" />
               <div className="relative z-10 flex h-full flex-col">
                 <h3 className="font-display text-2xl font-bold">Información de contacto</h3>
@@ -121,7 +126,10 @@ export function Contact() {
                       <div className="text-xs font-semibold uppercase tracking-wider text-white/50">
                         Teléfono
                       </div>
-                      <a href={`tel:${CONTACT.phoneRaw}`} className="text-sm text-white/90 hover:text-white">
+                      <a
+                        href={`tel:${CONTACT.phoneRaw}`}
+                        className="text-sm text-white/90 hover:text-white"
+                      >
                         {CONTACT.phone}
                       </a>
                     </div>
@@ -134,7 +142,10 @@ export function Contact() {
                       <div className="text-xs font-semibold uppercase tracking-wider text-white/50">
                         Email
                       </div>
-                      <a href={`mailto:${CONTACT.email}`} className="text-sm text-white/90 hover:text-white">
+                      <a
+                        href={`mailto:${CONTACT.email}`}
+                        className="text-sm text-white/90 hover:text-white"
+                      >
                         {CONTACT.email}
                       </a>
                     </div>
@@ -192,11 +203,11 @@ export function Contact() {
           <Reveal as="div" delay={0.1} className="lg:col-span-3">
             <motion.form
               onSubmit={handleSubmit(onSubmit)}
-              className="rounded-3xl border border-neutral-200 bg-white p-8 shadow-sm md:p-10"
+              className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 shadow-xl backdrop-blur-xl md:p-10"
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <label htmlFor="name" className="text-sm font-medium text-neutral-700">
+                  <label htmlFor="name" className="text-sm font-medium text-white/85">
                     Nombre completo
                   </label>
                   <Input
@@ -204,12 +215,16 @@ export function Contact() {
                     placeholder="Tu nombre"
                     {...register("name")}
                     aria-invalid={!!errors.name}
-                    className="h-11"
+                    className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-codfy focus-visible:ring-codfy/30"
                   />
-                  {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+                  {errors.name && (
+                    <p className="text-xs text-red-400" role="alert">
+                      {errors.name.message}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor="email" className="text-sm font-medium text-neutral-700">
+                  <label htmlFor="email" className="text-sm font-medium text-white/85">
                     Email
                   </label>
                   <Input
@@ -218,12 +233,16 @@ export function Contact() {
                     placeholder="tu@email.com"
                     {...register("email")}
                     aria-invalid={!!errors.email}
-                    className="h-11"
+                    className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-codfy focus-visible:ring-codfy/30"
                   />
-                  {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-xs text-red-400" role="alert">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor="phone" className="text-sm font-medium text-neutral-700">
+                  <label htmlFor="phone" className="text-sm font-medium text-white/85">
                     Teléfono
                   </label>
                   <Input
@@ -232,19 +251,28 @@ export function Contact() {
                     placeholder="+57 300 000 0000"
                     {...register("phone")}
                     aria-invalid={!!errors.phone}
-                    className="h-11"
+                    className="h-11 border-white/15 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-codfy focus-visible:ring-codfy/30"
                   />
-                  {errors.phone && <p className="text-xs text-red-500">{errors.phone.message}</p>}
+                  {errors.phone && (
+                    <p className="text-xs text-red-400" role="alert">
+                      {errors.phone.message}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-1.5">
-                  <label htmlFor="subject" className="text-sm font-medium text-neutral-700">
+                  <label htmlFor="subject" className="text-sm font-medium text-white/85">
                     Asunto
                   </label>
                   <Select
                     value={subject ?? ""}
-                    onValueChange={(val) => setValue("subject", val ?? "", { shouldValidate: true })}
+                    onValueChange={(val) =>
+                      setValue("subject", val ?? "", { shouldValidate: true })
+                    }
                   >
-                    <SelectTrigger id="subject" className="h-11 w-full">
+                    <SelectTrigger
+                      id="subject"
+                      className="h-11 w-full border-white/15 bg-white/5 text-white focus-visible:border-codfy focus-visible:ring-codfy/30"
+                    >
                       <SelectValue placeholder="Selecciona uno" />
                     </SelectTrigger>
                     <SelectContent>
@@ -256,13 +284,15 @@ export function Contact() {
                     </SelectContent>
                   </Select>
                   {errors.subject && (
-                    <p className="text-xs text-red-500">{errors.subject.message}</p>
+                    <p className="text-xs text-red-400" role="alert">
+                      {errors.subject.message}
+                    </p>
                   )}
                 </div>
               </div>
 
               <div className="mt-5 space-y-1.5">
-                <label htmlFor="message" className="text-sm font-medium text-neutral-700">
+                <label htmlFor="message" className="text-sm font-medium text-white/85">
                   Cuéntanos tu necesidad
                 </label>
                 <Textarea
@@ -271,10 +301,12 @@ export function Contact() {
                   placeholder="Describe brevemente tu proyecto o consulta..."
                   {...register("message")}
                   aria-invalid={!!errors.message}
-                  className="resize-none"
+                  className="resize-none border-white/15 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-codfy focus-visible:ring-codfy/30"
                 />
                 {errors.message && (
-                  <p className="text-xs text-red-500">{errors.message.message}</p>
+                  <p className="text-xs text-red-400" role="alert">
+                    {errors.message.message}
+                  </p>
                 )}
               </div>
 

@@ -10,20 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function PricingAmpirux() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0d0322] py-24 text-white md:py-32">
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-ampirux/30 blur-[100px]"
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -right-32 bottom-1/4 h-96 w-96 rounded-full bg-ampirux-light/20 blur-[100px]"
-          animate={{ scale: [1, 1.15, 1] }}
-          transition={{ duration: 14, delay: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+    <section className="relative py-24 text-white md:py-32">
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-3xl text-center">

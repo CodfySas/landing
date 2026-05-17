@@ -152,7 +152,15 @@
   }
   html {
     @apply font-sans;
+  }
+  html[data-scroll-behavior="smooth"] {
     scroll-behavior: smooth;
+  }
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    html[data-scroll-behavior="smooth"] {
+      scroll-behavior: auto;
+    }
   }
   ::selection {
     background: var(--color-codfy);

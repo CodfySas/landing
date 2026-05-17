@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { HeroNM } from "@/components/notamaestro/hero-nm";
 import { FeaturesNM } from "@/components/notamaestro/features-nm";
 import { BenefitsNM } from "@/components/notamaestro/benefits-nm";
+import { NotaMaestroPageScene } from "@/components/shared/notamaestro-page-scene";
 import { SoftwareJsonLd } from "@/components/shared/json-ld";
 import { EXTERNAL } from "@/lib/constants";
 
@@ -19,16 +20,19 @@ export const metadata: Metadata = {
 
 export default function NotaMaestroPage() {
   return (
-    <>
+    <div className="relative bg-[#160c02]">
       <SoftwareJsonLd
         name="NotaMaestro"
         description="Software educativo integral para colegios e instituciones educativas: notas, asistencias, boletines digitales y mucho más."
         url={EXTERNAL.notamaestro}
         brand="NotaMaestro by CODFY"
       />
-      <HeroNM />
-      <FeaturesNM />
-      <BenefitsNM />
-    </>
+      <NotaMaestroPageScene />
+      <div className="relative z-10">
+        <HeroNM />
+        <FeaturesNM />
+        <BenefitsNM />
+      </div>
+    </div>
   );
 }

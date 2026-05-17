@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/shared/whatsapp-button";
+import { ScrollProgress } from "@/components/shared/scroll-progress";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
 
@@ -66,8 +67,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${poppins.variable} h-full antialiased scroll-smooth`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+    <html
+      lang="es"
+      data-scroll-behavior="smooth"
+      className={`${poppins.variable} h-full antialiased scroll-smooth`}
+    >
+      <body className="relative min-h-full flex flex-col bg-codfy-ink text-foreground font-sans">
+        <ScrollProgress />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
