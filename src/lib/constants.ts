@@ -10,8 +10,8 @@ export const SITE = {
 
 export const CONTACT = {
   address: "Cra 21 # 18 - 2, Piso 1. Baranoa, Atlántico",
-  phone: "+57 300 313 9837",
-  phoneRaw: "3003139837",
+  phone: "+57 311 666 5370",
+  phoneRaw: "3116665370",
   email: "ventas@codfysas.com",
 } as const;
 
@@ -19,7 +19,7 @@ export const SOCIALS = {
   facebook: "https://www.facebook.com/61558057554191/",
   tiktok: "https://www.tiktok.com/@codfysas",
   instagram: "https://www.instagram.com/codfy_sas/",
-  whatsapp: "https://wa.me/3003139837",
+  whatsapp: "https://wa.me/3116665370",
 } as const;
 
 export const EXTERNAL = {
