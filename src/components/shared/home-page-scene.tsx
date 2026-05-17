@@ -80,9 +80,11 @@ export function HomePageScene() {
       // Clear
       ctx.clearRect(0, 0, width, height);
 
-      // Background radial wash that drifts with scroll
-      const washX = width * (0.3 + progress * 0.4);
-      const washY = height * (0.3 + Math.sin(progress * Math.PI) * 0.3);
+      // Background radial wash drifts slowly and autonomously — same speed
+      // regardless of scroll. Long Lissajous-style cycle so it never feels frantic.
+      const tSec = now / 1000;
+      const washX = width * (0.5 + Math.sin(tSec / 90) * 0.28);
+      const washY = height * (0.5 + Math.cos(tSec / 130) * 0.22);
       const wash = ctx.createRadialGradient(
         washX,
         washY,
@@ -158,12 +160,10 @@ export function HomePageScene() {
         ctx.fill();
       }
 
-      // Traveling pulse — primarily driven by scroll, with a slow time drift so
-      // it keeps drifting at scroll 0. Scroll covers ~25% of the network across
-      // the full page, so the pulse moves gently (not frantic) as the user scrolls.
-      const SCROLL_COVERAGE = 0.25; // full scroll = 25% of network traversal
-      const slowTime = (now / 1000 / 80) % 1; // 80s per quiet-state cycle
-      const pulseT = (progress * SCROLL_COVERAGE + slowTime * 0.12) % 1;
+      // Traveling pulse — autonomous slow cycle, completely independent of scroll.
+      // Full network traversal takes ~40 minutes so the motion feels meditative.
+      const PULSE_CYCLE_SEC = 600;
+      const pulseT = (tSec / PULSE_CYCLE_SEC) % 1;
       const totalSteps = nodes.length;
       const pulseI = Math.floor(pulseT * totalSteps) % totalSteps;
       const nextI = (pulseI + 1) % totalSteps;

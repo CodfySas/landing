@@ -54,21 +54,21 @@ function ProcessSticky({
   const trackWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="relative mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8 [@media(min-height:900px)]:lg:py-10">
       <div className="mx-auto max-w-3xl text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-codfy-light">
           {home.custom.eyebrow}
         </span>
-        <h2 className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight text-white text-balance sm:text-4xl md:text-5xl">
+        <h2 className="mt-2 font-display text-2xl font-bold leading-[1.1] tracking-tight text-white text-balance sm:text-3xl md:text-4xl [@media(min-height:900px)]:lg:text-5xl">
           {home.custom.title}
         </h2>
-        <p className="mt-5 text-base text-balance text-white/65 md:text-lg">
+        <p className="mt-3 text-sm text-balance text-white/65 md:text-base [@media(min-height:900px)]:lg:text-lg">
           {home.custom.description}
         </p>
       </div>
 
       {/* Horizontal timeline (desktop) */}
-      <div className="mt-14 hidden md:block">
+      <div className="mt-6 hidden md:block [@media(min-height:900px)]:lg:mt-12">
         <div className="relative">
           <div className="absolute inset-x-0 top-7 h-[2px] overflow-hidden rounded-full bg-white/10">
             <motion.div
@@ -87,7 +87,7 @@ function ProcessSticky({
                       scale: isActive ? 1 : 0.92,
                     }}
                     className={cn(
-                      "relative z-10 mb-5 inline-flex h-14 w-14 items-center justify-center rounded-full ring-2 transition-all duration-500",
+                      "relative z-10 mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full ring-2 transition-all duration-500",
                       isActive
                         ? "bg-gradient-to-br from-codfy to-codfy-dark text-white ring-codfy shadow-glow-codfy"
                         : "bg-codfy-ink text-white/40 ring-white/10"
@@ -105,7 +105,7 @@ function ProcessSticky({
         </div>
 
         {/* Active step detail panel */}
-        <div className="relative mt-12 min-h-[14rem]">
+        <div className="relative mt-6 min-h-[11rem] [@media(min-height:900px)]:lg:mt-10 [@media(min-height:900px)]:lg:min-h-[14rem]">
           {steps.map((s, i) => (
             <motion.article
               key={s.number}
@@ -115,17 +115,17 @@ function ProcessSticky({
                 y: i === active ? 0 : 20,
               }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0 mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl md:p-10"
+              className="absolute inset-0 mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl md:p-7 [@media(min-height:900px)]:lg:p-10"
             >
               <div className="flex items-center justify-between">
-                <h3 className="font-display text-3xl font-bold text-white sm:text-4xl">
+                <h3 className="font-display text-xl font-bold text-white sm:text-2xl md:text-3xl [@media(min-height:900px)]:lg:text-4xl">
                   {s.title}
                 </h3>
                 <div className="text-right">
-                  <div className="font-display text-5xl font-bold text-codfy/40">{s.number}</div>
+                  <div className="font-display text-3xl font-bold text-codfy/40 md:text-4xl [@media(min-height:900px)]:lg:text-5xl">{s.number}</div>
                 </div>
               </div>
-              <p className="mt-5 text-base leading-relaxed text-white/70 md:text-lg">
+              <p className="mt-3 text-sm leading-relaxed text-white/70 md:text-base [@media(min-height:900px)]:lg:text-lg">
                 {s.description}
               </p>
             </motion.article>

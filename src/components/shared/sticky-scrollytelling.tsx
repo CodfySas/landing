@@ -51,7 +51,7 @@ export function StickyScroll({
     >
       <div
         className={cn(
-          "sticky top-0 flex h-[100svh] w-full items-center overflow-hidden",
+          "sticky top-0 flex h-[100svh] w-full items-start overflow-hidden pt-20 pb-4 md:pt-24 md:pb-8 [@media(min-height:900px)]:items-center [@media(min-height:900px)]:pt-0 [@media(min-height:900px)]:pb-0",
           pinClassName
         )}
       >
@@ -105,7 +105,7 @@ export function HorizontalScroll({
     >
       <div
         className={cn(
-          "sticky top-0 flex h-[100svh] w-full items-center overflow-hidden",
+          "sticky top-0 flex h-[100svh] w-full items-stretch overflow-hidden",
           pinClassName
         )}
       >

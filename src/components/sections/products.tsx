@@ -183,8 +183,8 @@ function ProductPanel({
         0{index + 1}
       </span>
 
-      {/* Centered content */}
-      <div className="relative mx-auto flex h-full max-w-5xl items-center px-6 pt-24 pb-12 sm:px-10 lg:px-16">
+      {/* Centered content — top-aligned on short viewports so nothing clips under the navbar */}
+      <div className="relative mx-auto flex h-full max-w-5xl items-center px-6 pt-24 pb-12 sm:px-10 lg:px-16 [@media(min-height:900px)]:items-center">
         <motion.article
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

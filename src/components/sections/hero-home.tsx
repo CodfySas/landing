@@ -23,7 +23,6 @@ export function HeroHome() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-white/75 backdrop-blur-md"
           >
-            <Sparkles className="h-3.5 w-3.5 text-codfy-light" />
             {home.hero.eyebrow}
           </motion.div>
 
