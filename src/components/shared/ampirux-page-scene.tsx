@@ -1,17 +1,37 @@
 "use client";
 
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { useRef } from "react";
+import dynamic from "next/dynamic";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useWebGLSupport } from "@/hooks/use-webgl-support";
+
+const AmpiruxScene3D = dynamic(
+  () => import("@/components/three/ampirux-scene-3d").then((m) => m.AmpiruxScene3D),
+  { ssr: false }
+);
 
 /**
- * Persistent background scene for Ampirux: floating barber tools
- * (scissors, comb, razor, clipper, mirror) that travel side-to-side
- * across the page with organic random jitter. Fixed positioning so
- * the scene extends from hero to footer.
+ * Persistent background scene for Ampirux: a real Three.js scene with golden
+ * scissors that travel and snip across the page as you scroll, surrounded by
+ * floating barber props. Falls back to the legacy SVG/CSS scene when WebGL
+ * is unavailable. Fixed positioning so the scene extends hero → footer.
  */
 export function AmpiruxPageScene() {
   const reduced = usePrefersReducedMotion();
   const { scrollYProgress } = useScroll();
+  const webgl = useWebGLSupport();
+
+  const progressRef = useRef(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    progressRef.current = v;
+  });
 
   return (
     <div
@@ -20,14 +40,16 @@ export function AmpiruxPageScene() {
     >
       <BackdropWashes progress={scrollYProgress} />
 
-      {/* Hero scissors — the main protagonist */}
-      <HeroScissors progress={scrollYProgress} reduced={reduced} />
-
-      {/* Floating tools around the page */}
-      <FloatingTools progress={scrollYProgress} reduced={reduced} />
-
-      {/* Sparkles */}
-      <Sparkles />
+      {webgl ? (
+        <AmpiruxScene3D progressRef={progressRef} reduced={reduced} />
+      ) : webgl === false ? (
+        <>
+          {/* Legacy scene — WebGL unavailable */}
+          <HeroScissors progress={scrollYProgress} reduced={reduced} />
+          <FloatingTools progress={scrollYProgress} reduced={reduced} />
+          <Sparkles />
+        </>
+      ) : null}
 
       {/* Subtle grid */}
       <div

@@ -424,8 +424,9 @@ export const vigxa = {
       { value: "15", label: "Días de prueba" },
     ],
   },
-  // Scrolly modules — each one is a step in the scroll. The 3D object lives on
-  // the opposite side of the text (right/left alternating).
+  // Scrolly modules — each one is a step in the scroll. Choreography (no
+  // zigzag): step 1 tower CENTER (text split left+right), steps 2-5 tower
+  // LEFT (text right), final step tower RIGHT (text left).
   scrolly: {
     eyebrow: "Cómo funciona",
     title: "Una obra. Una plataforma. Cero hojas de cálculo.",
@@ -435,7 +436,7 @@ export const vigxa = {
       {
         id: "planning",
         eyebrow: "01 · Planeación",
-        align: "right" as const, // text on right when 3D is on left
+        align: "center" as const, // tower in the middle, text split both sides
         title: "Cotiza, presupuesta y arranca con APU",
         description:
           "Construye cotizaciones con tus servicios y plantillas, conviértelas en presupuesto con capítulos, actividades y Análisis de Precios Unitarios (APU). Configura AIU, importa desde Excel y genera el cronograma automático.",
@@ -449,7 +450,7 @@ export const vigxa = {
       {
         id: "execution",
         eyebrow: "02 · Ejecución",
-        align: "left" as const, // text on left when 3D is on right
+        align: "right" as const, // tower left, text right
         title: "Avanza la obra desde un solo tablero",
         description:
           "Bitácora diaria con clima integrado, fotos georreferenciadas, RFIs, change orders, punch list y submittals. Tu equipo en obra registra, tu equipo en oficina aprueba.",
@@ -477,7 +478,7 @@ export const vigxa = {
       {
         id: "people",
         eyebrow: "04 · Nómina y SG-SST",
-        align: "left" as const,
+        align: "right" as const,
         title: "Empleados, SST y compliance",
         description:
           "Nómina individual o masiva con liquidación, parafiscales y firma digital. SG-SST completo: inspecciones, incidentes, EPP, charlas, capacitaciones y permisos en altura.",

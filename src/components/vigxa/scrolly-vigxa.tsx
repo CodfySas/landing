@@ -127,8 +127,47 @@ function ScrollyStep({
     return -40;
   });
 
-  // align "right" means TEXT on the right → tower is on the left.
-  const isTextRight = step.align === "right";
+  // align "right" → text right / tower LEFT. align "left" → text left /
+  // tower RIGHT. align "center" → tower CENTER with text split both sides.
+  const align = step.align as "left" | "right" | "center";
+
+  if (align === "center") {
+    return (
+      <motion.div
+        style={{ opacity, y: yShift }}
+        className="pointer-events-none absolute inset-0 mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8"
+      >
+        {/* Left card: eyebrow + title + description */}
+        <div className="pointer-events-auto relative w-full max-w-md">
+          <StepCard>
+            <StepHeading step={step} index={index} total={total} />
+            <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">
+              {step.description}
+            </p>
+          </StepCard>
+        </div>
+
+        {/* Empty middle — the 3D tower lives here */}
+        <div className="hidden min-w-[26vw] flex-1 lg:block" />
+
+        {/* Right card: bullets */}
+        <div className="pointer-events-auto relative hidden w-full max-w-md lg:block">
+          <StepCard>
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-vigxa-light/80">
+              Incluye
+            </span>
+            <ul className="mt-4 grid gap-2.5">
+              {step.bullets.map((b) => (
+                <StepBullet key={b} text={b} />
+              ))}
+            </ul>
+          </StepCard>
+        </div>
+      </motion.div>
+    );
+  }
+
+  const isTextRight = align === "right";
 
   return (
     <motion.div
@@ -144,37 +183,15 @@ function ScrollyStep({
           isTextRight ? "ml-auto text-left" : "mr-auto text-left"
         )}
       >
-        {/* Glass card */}
-        <div className="relative overflow-hidden rounded-3xl border border-vigxa/25 bg-[#0c0a05]/55 p-7 shadow-2xl backdrop-blur-xl md:p-9">
-          {/* accent bar */}
-          <div className="absolute -top-px left-9 right-9 h-1 rounded-full bg-gradient-to-r from-vigxa via-vigxa-light to-vigxa/0" />
-
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-vigxa-light/80">
-              {step.eyebrow}
-            </span>
-            <span className="text-white/30">·</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
-              {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-            </span>
-          </div>
-
-          <h3 className="mt-4 font-display text-2xl font-bold leading-tight text-white sm:text-3xl md:text-[2.2rem]">
-            {step.title}
-          </h3>
+        <StepCard>
+          <StepHeading step={step} index={index} total={total} />
           <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">
             {step.description}
           </p>
 
           <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
             {step.bullets.map((b) => (
-              <li
-                key={b}
-                className="flex items-start gap-2.5 rounded-xl border border-white/5 bg-white/[0.025] p-2.5 text-xs text-white/85 sm:text-sm"
-              >
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-vigxa" />
-                <span>{b}</span>
-              </li>
+              <StepBullet key={b} text={b} />
             ))}
           </ul>
 
@@ -187,9 +204,55 @@ function ScrollyStep({
           >
             <ArrowToTower flip={!isTextRight} />
           </div>
-        </div>
+        </StepCard>
       </div>
     </motion.div>
+  );
+}
+
+function StepCard({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative overflow-visible rounded-3xl border border-vigxa/25 bg-[#0c0a05]/55 p-7 shadow-2xl backdrop-blur-xl md:p-9">
+      {/* accent bar */}
+      <div className="absolute -top-px left-9 right-9 h-1 rounded-full bg-gradient-to-r from-vigxa via-vigxa-light to-vigxa/0" />
+      {children}
+    </div>
+  );
+}
+
+function StepHeading({
+  step,
+  index,
+  total,
+}: {
+  step: (typeof vigxa.scrolly.steps)[number];
+  index: number;
+  total: number;
+}) {
+  return (
+    <>
+      <div className="flex items-center gap-3">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-vigxa-light/80">
+          {step.eyebrow}
+        </span>
+        <span className="text-white/30">·</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
+          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </span>
+      </div>
+      <h3 className="mt-4 font-display text-2xl font-bold leading-tight text-white sm:text-3xl md:text-[2.2rem]">
+        {step.title}
+      </h3>
+    </>
+  );
+}
+
+function StepBullet({ text }: { text: string }) {
+  return (
+    <li className="flex items-start gap-2.5 rounded-xl border border-white/5 bg-white/[0.025] p-2.5 text-xs text-white/85 sm:text-sm">
+      <Check className="mt-0.5 h-4 w-4 shrink-0 text-vigxa" />
+      <span>{text}</span>
+    </li>
   );
 }
 

@@ -1,17 +1,40 @@
 "use client";
 
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { useRef } from "react";
+import dynamic from "next/dynamic";
+import {
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useWebGLSupport } from "@/hooks/use-webgl-support";
+
+const NotaMaestroScene3D = dynamic(
+  () =>
+    import("@/components/three/notamaestro-scene-3d").then(
+      (m) => m.NotaMaestroScene3D
+    ),
+  { ssr: false }
+);
 
 /**
- * Persistent background scene for NotaMaestro: a large book travels
- * left ↔ right ↔ left across the viewport as the page scrolls, with
- * smaller papers/pencils floating around it at different parallax depths.
- * Fixed positioning so it stays visible from hero to footer.
+ * Persistent background scene for NotaMaestro: a Three.js open book that
+ * travels through the page (right → center → left → right) with a graduation
+ * cap, pencils and paper sheets floating around it. Falls back to the legacy
+ * SVG scene when WebGL is unavailable. Fixed positioning hero → footer.
  */
 export function NotaMaestroPageScene() {
   const reduced = usePrefersReducedMotion();
+  const webgl = useWebGLSupport();
   const { scrollYProgress } = useScroll();
+
+  const progressRef = useRef(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    progressRef.current = v;
+  });
 
   // Book travels across the page in 4 stops (alternating sides)
   // 0 → left (10%), 0.33 → right (62%), 0.66 → left (12%), 1 → right (58%)
@@ -44,23 +67,25 @@ export function NotaMaestroPageScene() {
       {/* Ambient gradient washes that drift slowly */}
       <BackdropWashes progress={scrollYProgress} />
 
-      {/* Main book — large, slow, low opacity */}
-      <motion.div
-        style={
-          reduced
-            ? { left: "10%", top: "25vh" }
-            : { left: bookX, top: bookY, rotate: bookRotate, scale: bookScale }
-        }
-        className="absolute"
-      >
-        <BookSvg size={420} opacity={0.16} />
-      </motion.div>
-
-      {/* Secondary smaller book at counter-phase for parallax */}
-      <SecondaryBook progress={scrollYProgress} reduced={reduced} />
-
-      {/* Floating papers + pencils as accents */}
-      <FloatingAccents progress={scrollYProgress} reduced={reduced} />
+      {webgl ? (
+        <NotaMaestroScene3D progressRef={progressRef} reduced={reduced} />
+      ) : webgl === false ? (
+        <>
+          {/* Legacy scene — WebGL unavailable */}
+          <motion.div
+            style={
+              reduced
+                ? { left: "10%", top: "25vh" }
+                : { left: bookX, top: bookY, rotate: bookRotate, scale: bookScale }
+            }
+            className="absolute"
+          >
+            <BookSvg size={420} opacity={0.16} />
+          </motion.div>
+          <SecondaryBook progress={scrollYProgress} reduced={reduced} />
+          <FloatingAccents progress={scrollYProgress} reduced={reduced} />
+        </>
+      ) : null}
 
       {/* Subtle warm grain over everything */}
       <div

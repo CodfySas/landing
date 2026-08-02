@@ -1,14 +1,22 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import {
   motion,
   useMotionValue,
+  useMotionValueEvent,
   useScroll,
   useTransform,
   type MotionValue,
 } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useWebGLSupport } from "@/hooks/use-webgl-support";
+
+const VigxaTower3D = dynamic(
+  () => import("@/components/three/vigxa-tower-3d").then((m) => m.VigxaTower3D),
+  { ssr: false }
+);
 
 /**
  * Persistent background scene for Vigxa: a 3D blueprint tower of stacked
@@ -21,6 +29,7 @@ import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
  */
 export function VigxaPageScene() {
   const reduced = usePrefersReducedMotion();
+  const webgl = useWebGLSupport();
   const { scrollYProgress: globalProgress } = useScroll();
 
   // Local progress: 0 before #modulos, 1 after it. Goes 0→1 during the
@@ -38,6 +47,13 @@ export function VigxaPageScene() {
   // floor across the 6 scrollytelling steps (one floor per step, antenna
   // appearing during the final Boardroom step).
   const buildLevel = useMotionValue(6);
+
+  // Plain ref mirror of buildLevel for the Three.js scene (read in useFrame
+  // without subscribing to framer-motion inside the canvas).
+  const buildLevelRef = useRef(6);
+  useMotionValueEvent(buildLevel, "change", (v) => {
+    buildLevelRef.current = v;
+  });
 
   useEffect(() => {
     let frame = 0;
@@ -113,32 +129,30 @@ export function VigxaPageScene() {
 
   // Horizontal position — anchored to modulos progress so it's stable across
   // viewport heights. Step centers at (i+0.5)/6 = 0.083, 0.250, 0.417,
-  // 0.583, 0.750, 0.917. Aligns alternate L/R, opposite the step text.
-  //
-  // align array in content.ts: [right, left, right, left, right, left]
-  // tower goes opposite:        [LEFT, RIGHT, LEFT, RIGHT, LEFT, RIGHT]
+  // 0.583, 0.750, 0.917. No zigzag: hero RIGHT → step 1 CENTER (text split
+  // around it) → steps 2-5 LEFT (text right) → step 6 RIGHT (text left) →
+  // centered for the rest of the page.
   const towerX = useTransform(
     modulosProgress,
-    [0, 0.001, 0.083, 0.250, 0.417, 0.583, 0.750, 0.917, 0.999, 1],
+    [0, 0.001, 0.083, 0.250, 0.750, 0.917, 0.999, 1],
     [
       "65vw", // before modulos (hero): tower right of hero copy
-      "62vw",
-      "15vw", // step 1 — LEFT (text-right)
-      "72vw", // step 2 — RIGHT (text-left)
-      "13vw", // step 3 — LEFT
-      "74vw", // step 4 — RIGHT
-      "13vw", // step 5 — LEFT
-      "70vw", // step 6 — RIGHT
+      "63vw",
+      "50vw", // step 1 — CENTER (text split left + right)
+      "16vw", // step 2 — LEFT (text right)
+      "16vw", // steps 3-5 — stay LEFT (text right)
+      "72vw", // step 6 — RIGHT (text left)
       "50vw", // end of modulos
       "50vw", // after modulos: centered behind features/compliance/pricing
     ]
   );
 
-  // Vertical drift — gentle bob, viewport-relative.
+  // Vertical drift — gentle bob, viewport-relative. Slightly lower at the
+  // hero so the mast doesn't crowd the navbar.
   const towerY = useTransform(
     globalProgress,
     [0, 0.25, 0.5, 0.75, 1],
-    ["48vh", "50vh", "50vh", "52vh", "50vh"]
+    ["54vh", "50vh", "50vh", "52vh", "50vh"]
   );
 
   // Scale — shrink the tower once we're past the modulos section so it
@@ -194,35 +208,42 @@ export function VigxaPageScene() {
         }
         className="absolute"
       >
-        {/* Perspective wrapper */}
-        <div
-          style={{
-            perspective: "2200px",
-            perspectiveOrigin: "50% 50%",
-          }}
-        >
-          {/* X-axis tilt wrapper (static) so the rotation reads as 3D */}
+        {webgl ? (
+          /* Real Three.js tower — spin/bob/build handled inside the canvas */
+          <div style={{ width: "min(460px, 90vw)", height: "min(620px, 125vw)" }}>
+            <VigxaTower3D buildLevelRef={buildLevelRef} reduced={reduced} />
+          </div>
+        ) : webgl === false ? (
+          /* Legacy CSS tower — WebGL unavailable */
           <div
             style={{
-              transformStyle: "preserve-3d",
-              transform: "rotateX(-14deg)",
+              perspective: "2200px",
+              perspectiveOrigin: "50% 50%",
             }}
           >
-            {/* Floating wrapper — small Y bobble */}
-            <div className="vigxa-tower-float" style={{ transformStyle: "preserve-3d" }}>
-              {/* Y-axis continuous spin */}
-              <div
-                className="vigxa-tower-spin"
-                style={{
-                  transformStyle: "preserve-3d",
-                  transformOrigin: "50% 50%",
-                }}
-              >
-                <VigxaTower buildLevel={reduced ? undefined : buildLevel} />
+            {/* X-axis tilt wrapper (static) so the rotation reads as 3D */}
+            <div
+              style={{
+                transformStyle: "preserve-3d",
+                transform: "rotateX(-14deg)",
+              }}
+            >
+              {/* Floating wrapper — small Y bobble */}
+              <div className="vigxa-tower-float" style={{ transformStyle: "preserve-3d" }}>
+                {/* Y-axis continuous spin */}
+                <div
+                  className="vigxa-tower-spin"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transformOrigin: "50% 50%",
+                  }}
+                >
+                  <VigxaTower buildLevel={reduced ? undefined : buildLevel} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Soft ground glow under the tower — does not rotate */}
         <div

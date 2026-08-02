@@ -1,24 +1,75 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+import { useWebGLSupport } from "@/hooks/use-webgl-support";
+
+const HomeScene3D = dynamic(
+  () => import("@/components/three/home-scene-3d").then((m) => m.HomeScene3D),
+  { ssr: false }
+);
 
 /**
- * Persistent background scene for Home: a network of nodes that drift
- * autonomously, with connecting lines drawn between nearby nodes. The
- * whole network pans/pulses with scroll progress. Canvas-based for
- * 60fps performance with many nodes.
+ * Persistent background scene for Home: a Three.js "digital core" — a chrome
+ * torus knot wrapped in a wireframe shell with orbiting module cubes wired to
+ * it by light beams. Scroll moves the system through the page and the mouse
+ * tilts it. Falls back to the legacy 2D canvas network without WebGL.
  */
 export function HomePageScene() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = usePrefersReducedMotion();
+  const webgl = useWebGLSupport();
   const { scrollYProgress } = useScroll();
-  const progressRef = useRef(0);
 
+  const progressRef = useRef(0);
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     progressRef.current = v;
   });
+
+  const mouseRef = useRef({ x: 0, y: 0 });
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      mouseRef.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseRef.current.y = -((e.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+    >
+      {webgl ? (
+        <HomeScene3D progressRef={progressRef} mouseRef={mouseRef} reduced={reduced} />
+      ) : webgl === false ? (
+        <LegacyNetworkScene reduced={reduced} progressRef={progressRef} />
+      ) : null}
+      {/* Vignette */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 50%, rgba(8,7,22,0.55) 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
+/**
+ * Legacy 2D canvas network — kept as the no-WebGL fallback.
+ */
+function LegacyNetworkScene({
+  reduced,
+  progressRef,
+}: {
+  reduced: boolean;
+  progressRef: React.RefObject<number>;
+}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -200,20 +251,5 @@ export function HomePageScene() {
     };
   }, [reduced]);
 
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
-    >
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-      {/* Vignette */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 50%, rgba(8,7,22,0.55) 100%)",
-        }}
-      />
-    </div>
-  );
+  return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />;
 }
